@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nav-height: 4.75rem;
+  --ember: #f65b15;
+}
+
+@layer base {
+  * {
+    border-color: theme('colors.steel.800');
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-height) + 1rem);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink-950 text-steel-100 font-sans antialiased;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: theme('colors.ember.500');
+    color: #fff;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display uppercase tracking-tight;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.ember.500');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: theme('colors.ink.950');
+  }
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.steel.700');
+    border-radius: 999px;
+    border: 2px solid theme('colors.ink.950');
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.ember.600');
+  }
+}
+
+@layer components {
+  .section {
+    @apply relative py-20 sm:py-24 lg:py-32;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-display text-xs font-medium uppercase tracking-[0.32em] text-ember-500;
+  }
+
+  .display-xl {
+    @apply font-display text-5xl font-semibold uppercase leading-[0.95] tracking-tight sm:text-6xl lg:text-8xl;
+  }
+
+  .display-lg {
+    @apply font-display text-4xl font-semibold uppercase leading-[1] tracking-tight sm:text-5xl lg:text-6xl;
+  }
+
+  .text-gradient {
+    @apply bg-ember-gradient bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply relative overflow-hidden rounded-3xl border border-steel-800 bg-steel-950/70 backdrop-blur-sm;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-steel-700 to-transparent;
+  }
+
+  .glass {
+    @apply border border-white/10 bg-white/5 backdrop-blur-md;
+  }
+
+  /* Decorative technical grid overlay */
+  .grid-overlay {
+    @apply pointer-events-none absolute inset-0 bg-grid-lines bg-grid opacity-[0.55];
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+
+  .scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(7, 7, 10, 0.35) 0%,
+      rgba(7, 7, 10, 0.55) 45%,
+      rgba(7, 7, 10, 0.92) 80%,
+      #07070a 100%
+    );
+  }
+
+  .scrim-full {
+    background: linear-gradient(
+        100deg,
+        rgba(7, 7, 10, 0.95) 0%,
+        rgba(7, 7, 10, 0.75) 42%,
+        rgba(7, 7, 10, 0.35) 75%,
+        rgba(7, 7, 10, 0.75) 100%
+      ),
+      linear-gradient(180deg, rgba(7, 7, 10, 0.4) 0%, rgba(7, 7, 10, 0.55) 60%, #07070a 100%);
+  }
+
+  .ember-tint {
+    background: radial-gradient(
+      60% 60% at 18% 30%,
+      rgba(246, 91, 21, 0.16) 0%,
+      transparent 60%
+    );
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .stroke-text {
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.16);
+    color: transparent;
+  }
+}
+
+/* Respect reduced motion globally */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
